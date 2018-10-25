@@ -31,5 +31,4 @@ fi
 
 
 
-npm run seed-db
 npm test
