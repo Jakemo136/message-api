@@ -1,0 +1,18 @@
+version: "2.1"
+
+services:
+
+  testenv:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - NODE_ENV=docker_test
+
+  postgres:
+    image: "postgres"
+    healthcheck:
+      test: exit 0
+    environment:
+      - POSTGRES_DB=messages_test
