@@ -8,7 +8,7 @@ module.exports = {
   docker_test: {
     client: 'postgresql',
     connection: {
-      database: 'users_with_secrets',
+      database: 'messages_test',
       user: 'postgres',
       host: 'postgres'
     }
