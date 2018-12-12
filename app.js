@@ -1,11 +1,11 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+require('dotenv').config
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const messagesRouter = require('./routes/messages');
 
-var messagesRouter = require('./routes/messages');
-
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
