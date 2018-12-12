@@ -56,8 +56,14 @@ router.patch('/:id', (req, res, next) =>{
 })
 
 // delete ONE
-router.delete('/', (req, res, next) =>{
-  
+router.delete('/:id', (req, res, next) =>{
+  knex('messages')
+    .where('id', req.params.id)
+    .del()
+    .returning(['id', 'name', 'message'])
+  .then((result) => {
+    res.status(200).send(result[0])
+  })
 })
 
 
