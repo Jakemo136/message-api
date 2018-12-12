@@ -42,8 +42,17 @@ router.post('/', (req, res, next) =>{
 })
 
 // update ONE
-router.patch('/', (req, res, next) =>{
-  
+router.patch('/:id', (req, res, next) =>{
+  knex('messages')
+    .where('id', req.params.id)
+    .update({
+      'name': req.body.name,
+      'message': req.body.message
+    })
+    .returning(['id', 'name', 'message'])
+  .then((result) => {
+    res.status(200).send(result[0])
+  })
 })
 
 // delete ONE
