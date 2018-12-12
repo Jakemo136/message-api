@@ -6,23 +6,39 @@ const router = express.Router()
 
 
 // YOUR CODE HERE
-// get ONE
+// get ALL
 router.get('/', (req, res, next) => {
   knex('messages')
     .select('id', 'name', 'message')
-    .then((response) => {
-      res.status(200).send(response)
+    .then((result) => {
+      res.status(200).send(result)
     })
 })
 
-// get ALL
+// get ONE
 router.get('/:id', (req, res, next) =>{
-  
+  knex('messages')
+    .where('id', req.params.id)
+    .returning('*')
+    .select('id', 'name', 'message')
+    .first()
+  .then((result) => {
+      res.status(200).send(result)
+    })    
 })
 
 // add ONE
-router.put('/', (req, res, next) =>{
-  
+router.post('/', (req, res, next) =>{
+  knex('messages')
+    .insert({
+      'name': req.body.name,
+      'message': req.body.message
+    })
+    .returning(['id', 'name', 'message'])
+  .then((result) => {
+    console.log(result)
+    res.status(200).send(result)
+  })
 })
 
 // update ONE
