@@ -37,7 +37,7 @@ router.post('/', (req, res, next) =>{
     .returning(['id', 'name', 'message'])
   .then((result) => {
     console.log(result)
-    res.status(200).send(result)
+    res.status(200).send(result[0])
   })
 })
 
