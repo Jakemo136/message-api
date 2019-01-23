@@ -4,9 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const messagesRouter = require('./routes/messages');
-var cors = require("cors")
+// var cors = require("cors")
 
-const app = express();
+// const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
